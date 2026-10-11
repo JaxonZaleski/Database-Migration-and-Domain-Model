@@ -31,4 +31,10 @@ public class Profiles {
 
     @Column(name = "loyality_points")
     private int loyality_points;
+
+
+    @JoinColumn(name = "id")
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
+    private User user;
 }

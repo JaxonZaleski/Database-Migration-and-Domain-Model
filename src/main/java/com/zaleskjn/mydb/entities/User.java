@@ -4,7 +4,12 @@ package com.zaleskjn.mydb.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Data
+import java.util.ArrayList;
+import java.util.List;
+
+@ToString
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -24,4 +29,21 @@ public class User {
 
     @Column(nullable = false, name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
+    @Builder.Default
+    private List<Addresses> addresses = new ArrayList<>();
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private Profiles profile;
+
+    public void addAddress(Addresses address) {
+        addresses.add(address);
+        address.setUser(this);
+    }
+
+    public void removeAddress(Addresses address) {
+        addresses.remove(address);
+        address.setUser(null);
+    }
 }

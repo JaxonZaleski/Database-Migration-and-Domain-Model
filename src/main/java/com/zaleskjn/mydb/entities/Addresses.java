@@ -1,12 +1,11 @@
 package com.zaleskjn.mydb.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@ToString
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -29,6 +28,11 @@ public class Addresses {
     @Column(nullable = false, name = "zip")
     private String zip;
 
-    @Column(nullable = false, name = "user_id")
-    private Long user_id;
+    //@Column(nullable = false, name = "user_id")
+    //private Long user_id;
+
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 }

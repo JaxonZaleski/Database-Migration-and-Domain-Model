@@ -1,0 +1,8 @@
+create table product
+(
+    id          bigint auto_increment
+        primary key,
+    name        varchar(255) not null,
+    description varchar(255) not null,
+    price       decimal      not null
+);
