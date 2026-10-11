@@ -66,7 +66,7 @@ public class CategoryService {
 //        categoryRepository.save(category);
 
         //Find id then create new product
-        var category = categoryRepository.findById(2).orElseThrow();
+        var category = categoryRepository.findById(3).orElseThrow();
         var product = Product.builder()
                 .name("Jeans")
                 .description("For protection")
